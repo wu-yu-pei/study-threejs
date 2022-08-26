@@ -5,7 +5,6 @@ const scene = new THREE.Scene();
 
 // 创建一个相机
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
 camera.position.set(0, 0, 400);
 
 // 创建一个渲染器
@@ -14,7 +13,7 @@ const renderer = new THREE.WebGLRenderer();
 // 设置渲染器的大小
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
-console.log(renderer);
+
 
 // 将渲染器添加到文档中
 document.body.appendChild(renderer.domElement);

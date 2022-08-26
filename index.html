@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        color: #fff;
+      }
+      .canvas-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .box{
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+			.box h2 {
+				width: 100vw;
+				text-align: center;
 			}
-		</style>
-	</head>
-	<body>
-		<script src="./src/10.ts" type="module"></script>
-	</body>
+    </style>
+  </head>
+  <body>
+    <div class="canvas-content"></div>
+    <div class="box">
+      <h2>欢迎来到Threejs世界。。。</h2>
+    </div>
+    <script src="./src/10.ts" type="module"></script>
+  </body>
 </html>

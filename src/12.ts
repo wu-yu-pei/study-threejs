@@ -34,13 +34,23 @@ scene.add(axesHelper);
 
 // 几何体
 const pointGeometry: THREE.BufferGeometry = new THREE.BufferGeometry();
-const count = 1000;
+const count = 300;
 const positions = new Float32Array(count * 3);
 const colors = new Float32Array(count * 3);
 for (let i = 0; i < count * 3; i++) {
-  positions[i] = Math.random() * 1000 - 500;
+  // positions[i] = Math.random() * 1000 - 500;
   colors[i] = Math.random();
 }
+for (let i = 0; i < count; i++) {
+  const arge = (i % 3) * ((2 * Math.PI) / 3);
+
+  const d = Math.random() * 1000;
+  positions[i * 3] = d * Math.cos(arge);
+  positions[i * 3 + 1] = 0;
+  positions[i * 3 + 2] = d * Math.sin(arge);
+}
+
+
 pointGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 pointGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 

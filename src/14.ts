@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 /**
- *Point材质的基本使用
+ *raycaster raycaster 投射光线
  */
 
 // 场景

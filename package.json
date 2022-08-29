@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite --host"
+    "dev": "vite --host",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/cannon": "^0.1.8",
     "@types/gsap": "^3.0.0",
     "@types/three": "^0.143.1",
+    "cannon-es": "^0.20.0",
     "dat.gui": "^0.7.9",
     "gsap": "^3.11.0",
     "three": "^0.143.0",

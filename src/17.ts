@@ -6,7 +6,6 @@ import { GUI } from 'dat.gui';
 import font from '../assets/fonts/helvetiker_regular.typeface.json?url';
 import mp3 from '../assets/time.mp3?url';
 
-
 /**
  *raycaster raycaster 投射光线
  */
@@ -26,7 +25,7 @@ const fontLoader = new FontLoader();
 
 // 坐标系
 const axesHelper = new THREE.AxesHelper(50);
-scene.add(axesHelper);
+// scene.add(axesHelper);
 
 // 渲染器
 const renderer = new THREE.WebGLRenderer();
@@ -81,6 +80,12 @@ panelMesh.position.set(0, 0, -25);
 panelMesh.receiveShadow = true;
 scene.add(panelMesh);
 
+// out cicli
+// const outCicleGeometry = new THREE.RingGeometry(64, 65, 100);
+// const outCicleMesh = new THREE.Mesh(outCicleGeometry, whriteMaterial);
+// outCicleMesh.castShadow = true;
+// outCicleMesh.position.set(0, 0, 4.5);
+// scene.add(outCicleMesh);
 
 // 十分秒 针
 const shiLineMeaterial = new THREE.LineBasicMaterial({
@@ -183,6 +188,7 @@ for (let i = 0; i < 60; i++) {
   const timeLineGeometry = new THREE.BufferGeometry().setFromPoints(timeLinePoints);
 
   const timeLineMesh = new THREE.Line(timeLineGeometry, timeLineMaterial);
+  timeLineMesh.castShadow= true
   timeLineMesh.position.set(0, 0, 0);
 
   scene.add(timeLineMesh);

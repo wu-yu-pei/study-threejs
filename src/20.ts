@@ -12,6 +12,10 @@ import fragmentShader from '../shader/base/fragmentShader.glsl?raw';
 // 场景
 const scene = new THREE.Scene();
 
+// texture
+const textureLoader = new THREE.TextureLoader();
+
+const texture = textureLoader.load('../assets/tsxtures/user.jpg');
 // gui
 const gui = new GUI();
 
@@ -36,20 +40,28 @@ controls.enableDamping = true;
 
 // 材质
 const material = new THREE.ShaderMaterial({
+  uniforms: {
+    uTime: { value: 1.0 },
+    uTexture: {
+      value: texture,
+    },
+  },
   vertexShader: vertexShader,
   fragmentShader: fragmentShader,
   side: THREE.DoubleSide,
-  wireframe: true,
+  // wireframe: true,
 });
+
 const panelGeometry = new THREE.PlaneGeometry(40, 40, 100);
-// log
-console.log(panelGeometry);
+
 // pancel
 scene.add(new THREE.Mesh(panelGeometry, material));
 
+const clock = new THREE.Clock();
 function animate() {
   controls.update();
 
+  material.uniforms.uTime.value = clock.getElapsedTime();
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }

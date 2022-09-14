@@ -54,6 +54,7 @@ const panleMaterial = new THREE.RawShaderMaterial({
 });
 
 const panleMesh = new THREE.Mesh(panleGeomotry, panleMaterial);
+panleMesh.position.set(0, 0, 0);
 scene.add(panleMesh);
 
 const clock = new THREE.Clock();

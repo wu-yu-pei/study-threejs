@@ -3,6 +3,7 @@ precision lowp float;
 
 // Vertex
 varying vec2 vUv;
+varying vec3 vPosition;
 
 //
 uniform vec3 u_color;
@@ -19,7 +20,28 @@ void main() {
   // 根据时间改变效果
   // vec3 color = vec3((sin(u_time) + 1.0)/2.0, 0.0, (cos(u_time) + 1.0)/2.0);
 
-  // 根据顶点位置改变效果
-  vec3 color = mix(vec3(1.0,0.0,0.0), vec3(0.0,0.0,1.0), vUv.y);
+  // 根据顶点位置改变效果 uv
+  // vec3 color = mix(vec3(1.0,0.0,0.0), vec3(0.0,0.0,1.0), vUv.y);
+
+  // 根据位置改变效果
+  // vec3 color = vec3(vPosition.x, vPosition.y,0.0);
+
+  // clamp函数
+  // vec3 color = vec3(0.0);
+  // color.r = clamp(vPosition.x, 0.0, 1.0);
+  // color.g = clamp(vPosition.y, 0.0, 1.0);
+
+  // step函数
+  // vec3 color = vec3(0.0);
+  // color.r = step(-0.5,vPosition.x);
+  // color.g = step(0.5,vPosition.y);
+
+  // color.r = step(-1.0,vPosition.x);
+  // color.g = step(-1.0,vPosition.y);
+
+  //smoothstep
+  vec3 color = vec3(0.0);
+  color.r = smoothstep(0.0,0.05,vPosition.x);
+  color.g = smoothstep(0.0,0.05,vPosition.y);
   gl_FragColor = vec4(color, 1.0);
 }

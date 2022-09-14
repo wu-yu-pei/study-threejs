@@ -1,25 +1,11 @@
 import * as THREE from 'three';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GUI } from 'dat.gui';
 
-/**
- *raycaster raycaster 投射光线
- */
 
 // 场景
 const scene = new THREE.Scene();
 
-// texture
-// const textureLoader = new RGBELoader();
-// textureLoader.load('../assets/robbit/sky12.hdr', (texture) => {
-//   texture.mapping = THREE.EquirectangularReflectionMapping;
-//   scene.background = texture;
-//   scene.environment = texture;
-// });
-// gui
 const gui = new GUI();
 
 // 相机
@@ -56,25 +42,9 @@ const geometry = new THREE.BufferGeometry().setFromPoints(points);
 
 const material = new THREE.LineBasicMaterial({ color: 0xffffff });
 
-// Create the final object to add to the scene
 const ellipse = new THREE.Line(geometry, material);
 
-// const curve = new THREE.CatmullRomCurve3( [
-// 	new THREE.Vector3( -10, 0, 0 ),
-// 	new THREE.Vector3( 0, 0, 10 ),
-// 	new THREE.Vector3( 10, 0, 0 ),
-// 	new THREE.Vector3( 0, 0, -10 ),
-// 	new THREE.Vector3( -10, 0, 0 ),
-// ] );
 
-// const points = curve.getPoints( 1000 );
-// const geometry = new THREE.BufferGeometry().setFromPoints( points );
-
-// const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-
-// // Create the final object to add to the scene
-// const curveObject = new THREE.Line( geometry, material );
-// scene.add( curveObject );
 
 // 创建一个球
 const sphereGeometry = new THREE.SphereGeometry(3, 32, 32);
@@ -93,7 +63,6 @@ function animate() {
   controls.update();
   const elapsedTime = clock.getElapsedTime();
   const t = (elapsedTime * 0.1) % 1;
-  console.log(curve.getPointAt(t));
 
   sphere.position.set(curve.getPointAt(t).x, curve.getPointAt(t).y, 0);
 

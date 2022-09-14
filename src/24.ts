@@ -41,6 +41,9 @@ const uniforms = {
   u_resolve: {
     value: { x: 1.0, y: 1.0 },
   },
+  u_time: {
+    value: 0,
+  },
 };
 const panleGeomotry = new THREE.PlaneGeometry(1, 1);
 const panleMaterial = new THREE.RawShaderMaterial({
@@ -53,12 +56,14 @@ const panleMaterial = new THREE.RawShaderMaterial({
 const panleMesh = new THREE.Mesh(panleGeomotry, panleMaterial);
 scene.add(panleMesh);
 
+const clock = new THREE.Clock();
 function animate() {
   controls.update();
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
   uniforms.u_resolve.value.x = window.innerWidth;
   uniforms.u_resolve.value.y = window.innerHeight;
+  uniforms.u_time.value = clock.getElapsedTime();
 }
 
 animate();

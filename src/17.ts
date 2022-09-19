@@ -3,8 +3,10 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GUI } from 'dat.gui';
+import github from '../assets/github.png?url';
 import font from '../assets/fonts/helvetiker_regular.typeface.json?url';
 import mp3 from '../assets/time.mp3?url';
+console.log(github);
 
 /**
  *raycaster raycaster 投射光线
@@ -79,13 +81,6 @@ const panelMesh = new THREE.Mesh(panelGeometry, boxMaterial);
 panelMesh.position.set(0, 0, -25);
 panelMesh.receiveShadow = true;
 scene.add(panelMesh);
-
-// out cicli
-// const outCicleGeometry = new THREE.RingGeometry(64, 65, 100);
-// const outCicleMesh = new THREE.Mesh(outCicleGeometry, whriteMaterial);
-// outCicleMesh.castShadow = true;
-// outCicleMesh.position.set(0, 0, 4.5);
-// scene.add(outCicleMesh);
 
 // 十分秒 针
 const shiLineMeaterial = new THREE.LineBasicMaterial({
@@ -188,24 +183,54 @@ for (let i = 0; i < 60; i++) {
   const timeLineGeometry = new THREE.BufferGeometry().setFromPoints(timeLinePoints);
 
   const timeLineMesh = new THREE.Line(timeLineGeometry, timeLineMaterial);
-  timeLineMesh.castShadow= true
+  timeLineMesh.castShadow = true;
   timeLineMesh.position.set(0, 0, 0);
 
   scene.add(timeLineMesh);
 }
 
+// github cicle
+const textLoader = new THREE.TextureLoader();
+const githubTexture = textLoader.load(github);
+const cicleGeomotry = new THREE.CircleGeometry(3, 10, Math.PI / 10);
+const cicleMaterial = new THREE.MeshBasicMaterial({
+  color: '#fff',
+  side: THREE.DoubleSide,
+  map: githubTexture,
+});
+const cicleMesh = new THREE.Mesh(cicleGeomotry, cicleMaterial);
+cicleMesh.position.set(0, 0, 2.6);
+scene.add(cicleMesh);
+
+// 事件
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+const boxMaths: any = [];
+boxMaths.push(cicleMesh);
+window.addEventListener('click', (e) => {
+  pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -((e.clientY / window.innerHeight) * 2 - 1);
+  raycaster.setFromCamera(pointer, camera);
+  const intersects: any[] = raycaster.intersectObjects(boxMaths);
+  for (let i = 0; i < intersects.length; i++) {
+    window.open('https://github.com/wu-yu-pei/study-threejs');
+  }
+});
+
+window.addEventListener('mousemove', (e) => {
+  document.body.style.cursor = '';
+  pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -((e.clientY / window.innerHeight) * 2 - 1);
+  raycaster.setFromCamera(pointer, camera);
+  const intersects: any[] = raycaster.intersectObjects(boxMaths);
+  for (let i = 0; i < intersects.length; i++) {
+    document.body.style.cursor = 'pointer';
+  }
+});
+
 const clock = new THREE.Clock();
 function animate() {
   const time = clock.getElapsedTime();
-
-  // if (
-  //   controls.getAzimuthalAngle() < -1.4 ||
-  //   controls.getAzimuthalAngle() > 1.4 ||
-  //   controls.getPolarAngle() < 0.5 ||
-  //   controls.getPolarAngle() > 3
-  // ) {
-  //   controls.reset();
-  // }
   controls.update();
 
   yellowPointLight.position.x = Math.sin(time) * 30;

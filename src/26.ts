@@ -31,38 +31,38 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
 // texture
-const textureLoader = new THREE.TextureLoader();
+// const textureLoader = new THREE.TextureLoader();
 
-const basecolorTexture = textureLoader.load('../assets/test/power_floor_BaseColor.jpg');
-basecolorTexture.offset = new THREE.Vector2(0.325, 0.33);
+// const basecolorTexture = textureLoader.load('../assets/test/power_floor_BaseColor.jpg');
+// basecolorTexture.offset = new THREE.Vector2(0.325, 0.33);
 
-const alphTexture = textureLoader.load('../assets/test/power_floor_AO.jpg');
-alphTexture.offset = new THREE.Vector2(0.325, 0.33);
+// const alphTexture = textureLoader.load('../assets/test/power_floor_AO.jpg');
+// alphTexture.offset = new THREE.Vector2(0.325, 0.33);
 
-const roughnesTexture = textureLoader.load('../assets/test/power_floor_Roughness.jpg');
-roughnesTexture.offset = new THREE.Vector2(0.325, 0.33);
+// const roughnesTexture = textureLoader.load('../assets/test/power_floor_Roughness.jpg');
+// roughnesTexture.offset = new THREE.Vector2(0.325, 0.33);
 
-const metalnesTexture = textureLoader.load('../assets/test/power_floor_Metallic.jpg');
-metalnesTexture.offset = new THREE.Vector2(0.325, 0.33);
+// const metalnesTexture = textureLoader.load('../assets/test/power_floor_Metallic.jpg');
+// metalnesTexture.offset = new THREE.Vector2(0.325, 0.33);
 
-const normalTexture = textureLoader.load('../assets/test/power_floor_Normal.jpg');
-normalTexture.offset = new THREE.Vector2(0.325, 0.33);
+// const normalTexture = textureLoader.load('../assets/test/power_floor_Normal.jpg');
+// normalTexture.offset = new THREE.Vector2(0.325, 0.33);
 
 var material = new THREE.MeshStandardMaterial({
-  map: basecolorTexture,
-  alphaMap: alphTexture,
-  envMap: alphTexture,
-  roughnessMap: roughnesTexture,
-  metalnessMap: metalnesTexture,
-  normalMap: normalTexture,
-  metalness: 0.3,
-  shadowSide: THREE.DoubleSide,
+  // map: basecolorTexture,
+  // alphaMap: alphTexture,
+  // envMap: alphTexture,
+  // roughnessMap: roughnesTexture,
+  // metalnessMap: metalnesTexture,
+  // normalMap: normalTexture,
+  // metalness: 0.3,
+  // shadowSide: THREE.DoubleSide,
 });
 
 // gltf加载器
 const gltfLoader = new GLTFLoader();
 
-gltfLoader.load('../assets/test/powerfloor1.glb', (gltf) => {
+gltfLoader.load('../assets/robbit/rabbit.glb', (gltf) => {
   (gltf.scene.children[0] as any).material = material;
   (gltf.scene.children[0] as any).material.needsUpdate = true;
   (gltf.scene.children[0] as any).castShadow = true;

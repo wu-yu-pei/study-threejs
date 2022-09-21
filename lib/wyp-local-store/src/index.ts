@@ -1,3 +1,5 @@
+import { encrypt, decrypt } from './utils';
+
 interface Confing {
   type: string;
   expries: number;
@@ -31,7 +33,7 @@ class LS {
     }
 
     let data = {
-      value,
+      value: this.isEncrypt ? encrypt(value) : value,
       expires,
       date: +new Date(),
     };
@@ -56,7 +58,7 @@ class LS {
       return null;
     }
 
-    return data.value;
+    return this.isEncrypt ? decrypt(data.value) : data.value;
   }
 
   remoteItem(key: string) {
@@ -69,15 +71,17 @@ class LS {
   }
 }
 
-// useage
-const ls = new LS({
-  type: 'localStorage',
-  expries: 1000, // 秒
-  prefix: 'data-ls-',
-  isEncrypt: false,
-});
+export default LS;
 
-ls.setItem('name', 'zhangsan');
-setTimeout(() => {
-  console.log(ls.getItem('name'));
-}, 2000);
+// useage
+// const ls = new LS({
+//   type: 'localStorage',
+//   expries: 3000, // 秒
+//   prefix: 'data-ls-',
+//   isEncrypt: true,
+// });
+
+// ls.setItem('name', 'zhangsan');
+// setTimeout(() => {
+//   console.log(ls.getItem('name'));
+// }, 2000);

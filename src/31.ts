@@ -37,7 +37,7 @@ controls.enableDamping = true;
 
 // 坐标系
 const axesHelper = new THREE.AxesHelper(500);
-scene.add(axesHelper);
+// scene.add(axesHelper);
 
 // begin
 const materialA = new THREE.LineBasicMaterial({
